@@ -2,7 +2,7 @@ import React from 'react';
 import ListItems from './listItems';
 import './task.css';
 
-class Task extends React.Component {
+class Tasks extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -21,7 +21,9 @@ class Task extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     let arrayBis = [...this.state.array];
-    arrayBis.push(this.state.task);
+    if (this.state.task.length > 1) {
+      arrayBis.push(this.state.task);
+    }
     this.setState({ array: arrayBis });
     this.setState({ task: '' });
   }
@@ -51,4 +53,4 @@ class Task extends React.Component {
   }
 }
 
-export default Task;
+export default Tasks;

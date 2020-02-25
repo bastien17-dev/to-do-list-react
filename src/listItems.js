@@ -5,16 +5,25 @@ class ListItems extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      content: this.props.array
+      itemsTab: this.props.array
     };
+
+    this.closeTask = this.closeTask.bind(this);
+  }
+
+  closeTask(e) {
+    e.target.parentNode.style.display = 'none';
   }
 
   render() {
     return (
-      <ul>
+      <ul className='list'>
         {this.props.array.map(element => (
-          <li className='list' key={element.indexOf()}>
+          <li className='list__items' key={element}>
             {element}
+            <button className='list__closeButton' onClick={this.closeTask}>
+              DONE
+            </button>
           </li>
         ))}
       </ul>

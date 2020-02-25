@@ -1,14 +1,25 @@
-ul {
+.list {
   padding-inline-start: 0px;
+  max-height: 270px;
+  overflow: scroll;
 }
 
-.list {
+.list__items {
   display: flex;
-
+  justify-content: space-between;
   padding: 10px 15px;
   height: 40px;
   text-align: left;
   background-color: white;
   border-radius: 3px;
   margin-bottom: 2px;
+}
+
+.list__closeButton {
+  width: 70px;
+  height: 25px;
+  border: none;
+  background-color: rgb(73, 194, 99);
+  color: white;
+  font-weight: 100;
 }
