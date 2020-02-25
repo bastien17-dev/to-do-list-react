@@ -1,0 +1,14 @@
+ul {
+  padding-inline-start: 0px;
+}
+
+.list {
+  display: flex;
+
+  padding: 10px 15px;
+  height: 40px;
+  text-align: left;
+  background-color: white;
+  border-radius: 3px;
+  margin-bottom: 2px;
+}
