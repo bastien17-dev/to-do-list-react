@@ -12,7 +12,11 @@ class ListItems extends React.Component {
   }
 
   closeTask(e) {
-    e.target.parentNode.style.display = 'none';
+    let content = e.target.parentNode;
+    content.classList.add('is-hidden');
+    setTimeout(() => {
+      content.style.display = 'none';
+    }, 500);
   }
 
   render() {

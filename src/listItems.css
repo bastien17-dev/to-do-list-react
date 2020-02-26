@@ -13,6 +13,7 @@
   background-color: white;
   border-radius: 3px;
   margin-bottom: 2px;
+  transition: transform 0.5s;
 }
 
 .list__closeButton {
@@ -22,4 +23,8 @@
   background-color: rgb(73, 194, 99);
   color: white;
   font-weight: 100;
+}
+
+.list__items.is-hidden {
+  transform: scale(0);
 }
