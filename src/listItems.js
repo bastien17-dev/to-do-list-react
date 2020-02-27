@@ -5,18 +5,16 @@ class ListItems extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      itemsTab: this.props.array
+      item: ''
     };
-
     this.closeTask = this.closeTask.bind(this);
   }
 
   closeTask(e) {
-    let content = e.target.parentNode;
-    content.classList.add('is-hidden');
-    setTimeout(() => {
-      content.style.display = 'none';
-    }, 500);
+    const index = Array.from(
+      document.querySelector('.list').childNodes
+    ).findIndex(item => e.target.parentNode === item);
+    this.props.deleteFromList(index);
   }
 
   render() {

@@ -1,17 +1,22 @@
 import React from 'react';
 import ListItems from './listItems';
+import ButtonReset from './buttonReset';
 import './task.css';
+
+const taksList = [];
 
 class Tasks extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       task: '',
-      array: this.props.array
+      array: taksList
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.resetList = this.resetList.bind(this);
+    this.deleteTaskFromTasksList = this.deleteTaskFromTasksList.bind(this);
   }
 
   handleChange(e) {
@@ -28,7 +33,18 @@ class Tasks extends React.Component {
     this.setState({ task: '' });
   }
 
+  resetList() {
+    this.setState({ array: taksList });
+  }
+
+  deleteTaskFromTasksList(index) {
+    const arrayBis = [...this.state.array];
+    arrayBis.splice(index, 1);
+    this.setState({ array: arrayBis });
+  }
+
   render() {
+    let tasks = this.state.array;
     return (
       <div>
         <form className='taskForm' onSubmit={this.handleSubmit}>
@@ -42,12 +58,16 @@ class Tasks extends React.Component {
             ></input>
           </div>
           <input
-            className='taskForm__submit'
+            className='taskForm__button taskForm__button--submit'
             type='submit'
             value='Add Task'
           ></input>
         </form>
-        <ListItems array={this.state.array}></ListItems>
+        <ListItems
+          array={tasks}
+          deleteFromList={this.deleteTaskFromTasksList}
+        ></ListItems>
+        <ButtonReset onClick={this.resetList}></ButtonReset>
       </div>
     );
   }

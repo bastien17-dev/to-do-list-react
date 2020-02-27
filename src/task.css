@@ -25,12 +25,18 @@
   font-size: 1.2em;
 }
 
-.taskForm__submit {
+.taskForm__button {
   align-self: flex-end;
-  width: 100px;
-  height: 25px;
+  width: 150px;
+  height: 30px;
   border: none;
   border-radius: 3px;
   background-color: rgb(0, 105, 217);
   color: white;
+  font-size: 1.2em;
+}
+
+.taskForm__button--reset {
+  height: 30px;
+  width: 200px;
 }
