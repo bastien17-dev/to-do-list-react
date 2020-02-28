@@ -23,13 +23,16 @@ class App extends React.Component {
   }
 
   addTask(element) {
+    // [...this.state.tasks, element] => equivaut a this.state.tasks.puch(element)
     this.setState({
       tasks: [element, ...this.state.tasks]
     })
   }
 
-  resetTasks() {
-    this.setState({ tasks: initialTasks })
+
+  resetTasks(tasks = initialTasks) {
+    this.setState({ tasks })
+    // equivaut a this.setState({ tasks: tasks })
   }
 
   deleteTask(index) {
