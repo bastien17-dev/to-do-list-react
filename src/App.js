@@ -7,7 +7,7 @@ import ButtonReset from './buttonReset';
 import './style/task.css';
 import './style/App.css';
 
-const taskList = ['Range ta chambre Benoit!'];
+let taskList = ['Range ta chambre Benoit!'];
 
 class App extends React.Component {
   constructor(props) {
@@ -29,6 +29,7 @@ class App extends React.Component {
   }
 
   resetList() {
+    taskList = [];
     this.setState({ array: taskList });
   }
 
