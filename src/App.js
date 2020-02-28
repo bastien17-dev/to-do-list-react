@@ -42,7 +42,8 @@ class App extends React.Component {
   }
 
   render() {
-    const { tasks } = this.state
+    const { tasks } = this.state // equivaut a const tasks = this.state.tasks;
+    // https://wesbos.com/destructuring-objects/
 
     return (
       <div className='container'>

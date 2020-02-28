@@ -22,7 +22,8 @@ class TaskForm extends React.Component {
   }
 
   render() {
-    const { task } = this.state
+    const { task } = this.state // equivaut a const tasks = this.state.tasks;
+    // https://wesbos.com/destructuring-objects/
 
     return (
       <form className='taskForm' onSubmit={this.handleSubmit}>
