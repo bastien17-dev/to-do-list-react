@@ -22,6 +22,9 @@ class TaskForm extends React.Component {
   }
 
   render() {
+    const { task } = this.state // equivaut a const tasks = this.state.tasks;
+    // https://wesbos.com/destructuring-objects/
+
     return (
       <form className='taskForm' onSubmit={this.handleSubmit}>
         <div className='taskForm__input'>
@@ -29,7 +32,7 @@ class TaskForm extends React.Component {
           <input
             className='taskForm__input--field'
             type='text'
-            value={this.state.task}
+            value={task}
             onChange={this.handleChange}
           ></input>
         </div>
@@ -37,6 +40,7 @@ class TaskForm extends React.Component {
           className='taskForm__button taskForm__button--submit'
           type='submit'
           value='Add Task'
+          disabled={task.length === 0}
         ></input>
       </form>
     );

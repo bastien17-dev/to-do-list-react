@@ -66,3 +66,12 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+
+- change naming
+- clean way to call deleteFromList with index
+- from ListItems to Task
+- respect component naming convention: MyComponent and not myComponent
+- use self closing components when empty
+- input limitation directly into the TaskForm component
+- handle timed out delete: https://francescopantisano.it/react-todo-list-with-undo-timer-on-delete/
