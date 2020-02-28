@@ -11,15 +11,15 @@ const initialTasks = ['Range ta chambre Benoit!'];
 
 class App extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       tasks: initialTasks
     }
 
-    this.addTask = this.addTask.bind(this)
-    this.resetTasks = this.resetTasks.bind(this)
-    this.deleteTask = this.deleteTask.bind(this)
+    this.addTask = this.addTask.bind(this);
+    this.resetTasks = this.resetTasks.bind(this);
+    this.deleteTask = this.deleteTask.bind(this);
   }
 
   addTask(element) {
@@ -36,9 +36,9 @@ class App extends React.Component {
   }
 
   deleteTask(index) {
-    const tasksBis = [...this.state.tasks]
-    tasksBis.splice(index, 1)
-    this.setState({ tasks: tasksBis })
+    const tasksBis = [...this.state.tasks];
+    tasksBis.splice(index, 1);
+    this.setState({ tasks: tasksBis });
   }
 
   render() {
