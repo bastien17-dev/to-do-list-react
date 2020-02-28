@@ -34,9 +34,15 @@
   background-color: rgb(0, 105, 217);
   color: white;
   font-size: 1.2em;
+  cursor: pointer;
 }
 
 .taskForm__button--reset {
   height: 30px;
   width: 200px;
+}
+
+.taskForm__button:disabled {
+  opacity: 0.5;
+  cursor: default;
 }

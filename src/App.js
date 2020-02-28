@@ -1,55 +1,61 @@
 import React from 'react';
 
-import TaskForm from './taskForm';
-import ListItems from './listItems';
+import TaskForm from './TaskForm';
+import Task from './Task'
 import ButtonReset from './buttonReset';
 
 import './style/task.css';
 import './style/App.css';
 
-let taskList = ['Range ta chambre Benoit!'];
+const initialTasks = ['Range ta chambre Benoit!'];
 
 class App extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
+
     this.state = {
-      array: taskList
-    };
-    this.addTaskToList = this.addTaskToList.bind(this);
-    this.resetList = this.resetList.bind(this);
-    this.deleteTaskFromTasksList = this.deleteTaskFromTasksList.bind(this);
-  }
-
-  addTaskToList(element) {
-    let arrayBis = [...this.state.array];
-    if (element.length > 1) {
-      arrayBis.push(element);
+      tasks: initialTasks
     }
-    this.setState({ array: arrayBis });
+
+    this.addTask = this.addTask.bind(this)
+    this.resetTasks = this.resetTasks.bind(this)
+    this.deleteTask = this.deleteTask.bind(this)
   }
 
-  resetList() {
-    taskList = [];
-    this.setState({ array: taskList });
+  addTask(element) {
+    this.setState({
+      tasks: [element, ...this.state.tasks]
+    })
   }
 
-  deleteTaskFromTasksList(index) {
-    const arrayBis = [...this.state.array];
-    arrayBis.splice(index, 1);
-    this.setState({ array: arrayBis });
+  resetTasks() {
+    this.setState({ tasks: initialTasks })
+  }
+
+  deleteTask(index) {
+    const tasksBis = [...this.state.tasks]
+    tasksBis.splice(index, 1)
+    this.setState({ tasks: tasksBis })
   }
 
   render() {
-    let tasks = this.state.array;
+    const { tasks } = this.state
+
     return (
       <div className='container'>
         <h1>TO DO:</h1>
-        <TaskForm addTask={this.addTaskToList}></TaskForm>
-        <ListItems
-          array={tasks}
-          deleteFromList={this.deleteTaskFromTasksList}
-        ></ListItems>
-        <ButtonReset onClick={this.resetList}></ButtonReset>
+        <TaskForm addTask={this.addTask} />
+        <ul className='list'>
+          {tasks.map((task, i) => (
+            <Task
+              key={i}
+              title={task}
+              index={i}
+              deleteTask={this.deleteTask}
+            />
+          ))}
+        </ul>
+        <ButtonReset onClick={this.resetTasks} />
       </div>
     );
   }
