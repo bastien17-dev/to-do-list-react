@@ -4,10 +4,10 @@ import TaskForm from './taskForm';
 import ListItems from './listItems';
 import ButtonReset from './buttonReset';
 
-import './task.css';
-import './App.css';
+import './style/task.css';
+import './style/App.css';
 
-const taskList = [];
+const taskList = ['Range ta chambre Benoit!'];
 
 class App extends React.Component {
   constructor(props) {

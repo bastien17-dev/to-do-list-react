@@ -1,5 +1,6 @@
 import React from 'react';
-import './listItems.css';
+
+import './style/listItems.css';
 
 class ListItems extends React.Component {
   constructor(props) {
@@ -11,10 +12,14 @@ class ListItems extends React.Component {
   }
 
   closeTask(e) {
-    const index = Array.from(
-      document.querySelector('.list').childNodes
-    ).findIndex(item => e.target.parentNode === item);
-    this.props.deleteFromList(index);
+    const parentElement = e.target.parentNode;
+    parentElement.classList.add('is-deleted');
+    setTimeout(() => {
+      const index = Array.from(
+        document.querySelector('.list').childNodes
+      ).findIndex(item => parentElement === item);
+      this.props.deleteFromList(index);
+    }, 320);
   }
 
   render() {
