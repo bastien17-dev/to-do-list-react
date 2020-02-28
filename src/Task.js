@@ -7,7 +7,7 @@ export default ({ title, index, deleteTask }) => (
     {title}
     <button
       className='list__closeButton'
-      onClick={(e) => { deleteTask(index) }}
+      onClick={() => { deleteTask(index) }}
     >
       DONE
     </button>
