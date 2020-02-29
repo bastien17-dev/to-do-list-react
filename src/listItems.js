@@ -13,13 +13,11 @@ class ListItems extends React.Component {
 
   closeTask(e) {
     const parentElement = e.target.parentNode;
-    parentElement.classList.add('is-deleted');
-    setTimeout(() => {
-      const index = Array.from(
-        document.querySelector('.list').childNodes
-      ).findIndex(item => parentElement === item);
-      this.props.deleteFromList(index);
-    }, 320);
+
+    const index = Array.from(
+      document.querySelector('.list').childNodes
+    ).findIndex(item => parentElement === item);
+    this.props.deleteFromList(index);
   }
 
   render() {
