@@ -1,54 +1,55 @@
 import React from 'react';
 
 import TaskForm from './taskForm';
-import ListItems from './listItems';
+import Task from './Task';
 import ButtonReset from './buttonReset';
 
 import './style/task.css';
 import './style/App.css';
 
-let taskList = ['Range ta chambre Benoit!'];
+const initialTasks = [];
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      array: taskList
+      tasks: initialTasks
     };
+
     this.addTaskToList = this.addTaskToList.bind(this);
     this.resetList = this.resetList.bind(this);
-    this.deleteTaskFromTasksList = this.deleteTaskFromTasksList.bind(this);
+    this.deleteTask = this.deleteTask.bind(this);
   }
 
   addTaskToList(element) {
-    let arrayBis = [...this.state.array];
-    if (element.length > 1) {
-      arrayBis.push(element);
-    }
-    this.setState({ array: arrayBis });
+    this.setState({
+      tasks: [element, ...this.state.tasks]
+    });
   }
 
-  resetList() {
-    taskList = [];
-    this.setState({ array: taskList });
+  resetList(tasks = initialTasks) {
+    this.setState({ tasks });
   }
 
-  deleteTaskFromTasksList(index) {
-    const arrayBis = [...this.state.array];
-    arrayBis.splice(index, 1);
-    this.setState({ array: arrayBis });
+  deleteTask(index) {
+    const taskBis = [...this.state.tasks];
+    taskBis.splice(index, 1);
+    this.setState({ tasks: taskBis });
   }
 
   render() {
-    let tasks = this.state.array;
+    const {
+      tasks
+    } = this.state; /* equivaut à const tasks = this.state.tasks; */
     return (
       <div className='container'>
         <h1>TO DO:</h1>
         <TaskForm addTask={this.addTaskToList}></TaskForm>
-        <ListItems
-          array={tasks}
-          deleteFromList={this.deleteTaskFromTasksList}
-        ></ListItems>
+        <ul className='list'>
+          {tasks.map((task, i) => (
+            <Task key={i} title={task} index={i} deleteTask={this.deleteTask} />
+          ))}
+        </ul>
         <ButtonReset onClick={this.resetList}></ButtonReset>
       </div>
     );
