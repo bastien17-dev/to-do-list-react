@@ -6,7 +6,7 @@ function ButtonReset({ onClick }) {
       className='taskForm__button taskForm__button--reset'
       onClick={() => onClick()}
     >
-      Reset List
+      Reset All Tasks
     </button>
   );
 }

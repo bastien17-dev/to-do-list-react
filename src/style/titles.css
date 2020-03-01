@@ -1,0 +1,32 @@
+.container__title {
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  width: 500px;
+  left: -30px;
+  margin-bottom: 30px;
+}
+
+.container__title--to-do,
+.container__title--done {
+  width: 50%;
+}
+
+.container__title--done {
+  background-color: white;
+}
+
+.container__title--to-do {
+  cursor: pointer;
+}
+.container__title--done {
+  cursor: default;
+}
+
+.container__title--to-do.selected {
+  cursor: default;
+}
+
+.container__title--to-do.selected + .container__title--done {
+  cursor: pointer;
+}

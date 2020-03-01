@@ -5,6 +5,14 @@
   align-items: center;
 }
 
+.visible {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
 .taskForm__input {
   width: 100%;
   display: flex;

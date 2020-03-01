@@ -1,10 +1,9 @@
 import React from 'react';
 
-import TaskForm from './taskForm';
-import Task from './Task';
 import ButtonReset from './buttonReset';
+import TaskToDo from './TaskToDo';
+import Titles from './Titles';
 
-import './style/task.css';
 import './style/App.css';
 
 const initialTasks = [];
@@ -13,12 +12,14 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tasks: initialTasks
+      tasks: initialTasks,
+      toDoSectionSelected: true
     };
 
     this.addTaskToList = this.addTaskToList.bind(this);
     this.resetList = this.resetList.bind(this);
     this.deleteTask = this.deleteTask.bind(this);
+    this.sectionSelection = this.sectionSelection.bind(this);
   }
 
   addTaskToList(element) {
@@ -37,19 +38,27 @@ class App extends React.Component {
     this.setState({ tasks: taskBis });
   }
 
+  sectionSelection(toDoIsSelected = true) {
+    toDoIsSelected
+      ? this.setState({ toDoSectionSelected: true })
+      : this.setState({ toDoSectionSelected: false });
+  }
+
   render() {
     const {
       tasks
     } = this.state; /* equivaut à const tasks = this.state.tasks; */
+    console.log(tasks);
+
     return (
       <div className='container'>
-        <h1>TO DO:</h1>
-        <TaskForm addTask={this.addTaskToList}></TaskForm>
-        <ul className='list'>
-          {tasks.map((task, i) => (
-            <Task key={i} title={task} index={i} deleteTask={this.deleteTask} />
-          ))}
-        </ul>
+        <Titles selection={this.sectionSelection} />
+        <TaskToDo
+          selected={this.state.toDoSectionSelected}
+          tasks={tasks}
+          deleteTask={this.deleteTask}
+          addTaskToList={this.addTaskToList}
+        />
         <ButtonReset onClick={this.resetList}></ButtonReset>
       </div>
     );
