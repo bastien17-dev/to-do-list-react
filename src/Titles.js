@@ -26,6 +26,7 @@ class Titles extends React.Component {
   render() {
     return (
       <div className='container__title'>
+        <div className='separation-decoration'></div>
         <div
           onClick={this.handleClickToDo}
           className={`container__title--to-do ${
