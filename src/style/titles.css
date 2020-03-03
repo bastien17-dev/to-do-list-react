@@ -13,11 +13,12 @@
 }
 
 .container__title--done {
-  background-color: white;
+  background-color: rgb(212, 237, 218);
 }
 
 .container__title--to-do {
   cursor: pointer;
+  background-color: rgba(204, 229, 255);
 }
 .container__title--done {
   cursor: default;

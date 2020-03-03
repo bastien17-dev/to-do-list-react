@@ -10,6 +10,10 @@
   padding: 10px;
 }
 
+.list-done {
+  height: 465px;
+}
+
 .list__items {
   display: flex;
   justify-content: space-between;
@@ -18,7 +22,7 @@
   padding: 10px 15px;
   height: 40px;
   text-align: left;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(151, 151, 151, 0.1);
   border-radius: 3px;
   margin-bottom: 5px;
   transition: transform 0.3s;
@@ -36,8 +40,16 @@
   width: 70px;
   height: 25px;
   border: none;
-  background-color: rgb(73, 194, 99);
   border-radius: 3px;
   color: white;
   font-weight: 100;
+  cursor: pointer;
+}
+
+.list__closeButton.green {
+  background-color: rgb(73, 194, 99);
+}
+
+.list__closeButton.red {
+  background-color: rgba(199, 35, 49, 0.767);
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import TaskForm from './taskForm';
+import TaskForm from './TaskForm';
 import Task from './Task';
 
 import './style/task.css';
@@ -11,7 +11,14 @@ export default ({ selected, tasks, deleteTask, addTaskToList }) => {
       <TaskForm addTask={addTaskToList}></TaskForm>
       <ul className='list'>
         {tasks.map((task, i) => (
-          <Task key={i} title={task} index={i} deleteTask={deleteTask} />
+          <Task
+            key={i}
+            title={task}
+            index={i}
+            deleteTask={deleteTask}
+            buttonColor='green'
+            buttonContent='DONE'
+          />
         ))}
       </ul>
     </div>

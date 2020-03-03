@@ -6,9 +6,6 @@ class TaskForm extends React.Component {
     this.state = {
       task: ''
     };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(e) {
@@ -24,14 +21,14 @@ class TaskForm extends React.Component {
   render() {
     const { task } = this.state;
     return (
-      <form className='taskForm' onSubmit={this.handleSubmit}>
+      <form className='taskForm' onSubmit={this.handleSubmit.bind(this)}>
         <div className='taskForm__input'>
           <h2 className='taskForm__input--title'>New Task</h2>
           <input
             className='taskForm__input--field'
             type='text'
             value={task}
-            onChange={this.handleChange}
+            onChange={this.handleChange.bind(this)}
           ></input>
         </div>
         <input

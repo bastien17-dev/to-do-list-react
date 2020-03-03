@@ -1,25 +1,23 @@
 import React from 'react';
 
-import ButtonReset from './buttonReset';
+import ButtonReset from './ButtonReset';
 import TaskToDo from './TaskToDo';
 import Titles from './Titles';
+import TasksDone from './TasksDone.js';
 
 import './style/App.css';
 
 const initialTasks = [];
+const initialTasksDone = [];
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       tasks: initialTasks,
+      tasksDone: initialTasksDone,
       toDoSectionSelected: true
     };
-
-    this.addTaskToList = this.addTaskToList.bind(this);
-    this.resetList = this.resetList.bind(this);
-    this.deleteTask = this.deleteTask.bind(this);
-    this.sectionSelection = this.sectionSelection.bind(this);
   }
 
   addTaskToList(element) {
@@ -28,14 +26,24 @@ class App extends React.Component {
     });
   }
 
-  resetList(tasks = initialTasks) {
+  resetList(tasks = initialTasks, tasksDone = initialTasksDone) {
     this.setState({ tasks });
+    this.setState({ tasksDone });
   }
 
-  deleteTask(index) {
+  taskIsDone(index) {
+    this.setState({
+      tasksDone: [this.state.tasks[index], ...this.state.tasksDone]
+    });
     const taskBis = [...this.state.tasks];
     taskBis.splice(index, 1);
     this.setState({ tasks: taskBis });
+  }
+
+  deleteTask(index) {
+    const taskBis = [...this.state.tasksDone];
+    taskBis.splice(index, 1);
+    this.setState({ tasksDone: taskBis });
   }
 
   sectionSelection(toDoIsSelected = true) {
@@ -46,20 +54,29 @@ class App extends React.Component {
 
   render() {
     const {
-      tasks
-    } = this.state; /* equivaut à const tasks = this.state.tasks; */
-    console.log(tasks);
+      tasks,
+      tasksDone
+    } = this.state; /* equivaut à const tasks = this.state.tasks  const tasksDone = this.state.tasks */
 
     return (
-      <div className='container'>
-        <Titles selection={this.sectionSelection} />
+      <div
+        className={`container ${
+          this.state.toDoSectionSelected ? 'todoSelected' : ''
+        }`}
+      >
+        <Titles selection={this.sectionSelection.bind(this)} />
         <TaskToDo
           selected={this.state.toDoSectionSelected}
           tasks={tasks}
-          deleteTask={this.deleteTask}
-          addTaskToList={this.addTaskToList}
+          deleteTask={this.taskIsDone.bind(this)}
+          addTaskToList={this.addTaskToList.bind(this)}
         />
-        <ButtonReset onClick={this.resetList}></ButtonReset>
+        <TasksDone
+          selected={this.state.toDoSectionSelected}
+          tasks={tasksDone}
+          deleteTask={this.deleteTask.bind(this)}
+        />
+        <ButtonReset onClick={this.resetList.bind(this)}></ButtonReset>
       </div>
     );
   }
