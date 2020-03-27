@@ -24,6 +24,7 @@ class Titles extends React.Component {
   }
 
   render() {
+    const { tasks, tasksDone } = this.props;
     return (
       <div className='container__title'>
         <div className='separation-decoration'></div>
@@ -33,10 +34,20 @@ class Titles extends React.Component {
             this.state.todoSelected ? 'selected' : ''
           }`}
         >
-          <h1>TO DO</h1>
+          <h1>
+            TO DO
+            <span className='container__counter'>{`${
+              tasks.length > 0 ? ` (${tasks.length})` : ''
+            }`}</span>
+          </h1>
         </div>
         <div onClick={this.handleClickDone} className='container__title--done'>
-          <h1>DONE</h1>
+          <h1>
+            DONE
+            <span className='container__counter'>{`${
+              tasksDone.length > 0 ? ` (${tasksDone.length})` : ''
+            }`}</span>
+          </h1>
         </div>
       </div>
     );

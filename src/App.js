@@ -7,42 +7,68 @@ import TasksDone from './TasksDone.js';
 
 import './style/App.css';
 
-const initialTasks = [];
-const initialTasksDone = [];
+const setInitialTasksStorage = elements => {
+  localStorage.setItem('initialTasks', elements);
+};
+const setInitialTasksDoneStorage = elements => {
+  localStorage.setItem('initialTasksDone', elements);
+};
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tasks: initialTasks,
-      tasksDone: initialTasksDone,
+      tasks: localStorage.getItem('initialTasks')
+        ? localStorage.getItem('initialTasks').split(',')
+        : [],
+      tasksDone: localStorage.getItem('initialTasksDone')
+        ? localStorage.getItem('initialTasksDone').split(',')
+        : [],
       toDoSectionSelected: true
     };
   }
 
   addTaskToList(element) {
+    setInitialTasksStorage(`
+      ${element}
+      ${
+        localStorage.getItem('initialTasks')
+          ? ',' + localStorage.getItem('initialTasks')
+          : ''
+      }`);
     this.setState({
-      tasks: [element, ...this.state.tasks]
+      tasks: localStorage.getItem('initialTasks').split(',')
     });
   }
 
-  resetList(tasks = initialTasks, tasksDone = initialTasksDone) {
+  resetList(tasks = [], tasksDone = []) {
+    localStorage.clear();
     this.setState({ tasks });
     this.setState({ tasksDone });
   }
 
   taskIsDone(index) {
+    setInitialTasksDoneStorage(`
+      ${this.state.tasks[index]}
+      ${
+        localStorage.getItem('initialTasksDone')
+          ? ',' + localStorage.getItem('initialTasksDone')
+          : ''
+      }
+      `);
     this.setState({
-      tasksDone: [this.state.tasks[index], ...this.state.tasksDone]
+      tasksDone: localStorage.getItem('initialTasksDone').split(',')
     });
     const taskBis = [...this.state.tasks];
     taskBis.splice(index, 1);
+    setInitialTasksStorage(taskBis.join(','));
     this.setState({ tasks: taskBis });
   }
 
   deleteTask(index) {
     const taskBis = [...this.state.tasksDone];
     taskBis.splice(index, 1);
+    setInitialTasksDoneStorage(taskBis.join(','));
     this.setState({ tasksDone: taskBis });
   }
 
@@ -64,7 +90,11 @@ class App extends React.Component {
           this.state.toDoSectionSelected ? 'todoSelected' : ''
         }`}
       >
-        <Titles selection={this.sectionSelection.bind(this)} />
+        <Titles
+          selection={this.sectionSelection.bind(this)}
+          tasks={tasks}
+          tasksDone={tasksDone}
+        />
         <TaskToDo
           selected={this.state.toDoSectionSelected}
           tasks={tasks}
